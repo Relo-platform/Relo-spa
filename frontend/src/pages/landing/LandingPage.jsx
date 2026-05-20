@@ -1,13 +1,11 @@
-import '../App.css'
+import './Landing.css'
 import { useState, useEffect } from 'react';
-import GuestHeader from '../components/GuestHeader';
-import FeatureCard from '../components/FeatureCard';
-import Hero from '../components/Hero';
-import Loader from '../components/Loader';
-import GuestNeighborhoods from '../components/GuestNeighborhoods';
-import LoadingError from '../components/errors/ApiLoadingError';
-
-const BASE_API_LINK = 'http://localhost:3001/v1';
+import FeatureCard from '../../components/landing/FeatureCard';
+import Hero from '../../components/landing/Hero';
+import Loader from '../../components/Loader';
+import Header from '../../components/Header';
+import GuestNeighborhoods from '../../components/guest_space/GuestNeighborhoods';
+import LoadingError from '../../components/errors/ApiLoadingError';
 
 function LandingPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +14,7 @@ function LandingPage() {
   const [neighborhoods, setNeighborhoods] = useState([]);
 
   useEffect(() => {
-    fetch(`${BASE_API_LINK}/guest_space/landing_neighborhoods`)
+    fetch(`${import.meta.env.VITE_API_URL}/guest_space/landing_neighborhoods`)
       .then(res => res.json())
       .then(data => {
         setNeighborhoods(data);
@@ -30,7 +28,7 @@ function LandingPage() {
 
   return (
     <>
-      <GuestHeader/>
+      <Header/>
       <Hero/>
       <div className="features-section">
         <FeatureCard title="Compare Locations" description="Evaluate cities and neighborhoods."/>

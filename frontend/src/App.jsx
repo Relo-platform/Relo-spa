@@ -1,7 +1,6 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import GuestListingsPage from './pages/GuestListingsPage';
+import LandingPage from './pages/landing/LandingPage';
+import GuestListingsPage from './pages/listings/GuestListingsPage';
 
 function App() {
   return (

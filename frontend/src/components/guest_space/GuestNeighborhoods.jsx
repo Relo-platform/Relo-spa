@@ -1,4 +1,4 @@
-import NeighborhoodCard from './NeighborhoodCard';
+import NeighborhoodCard from '../landing/NeighborhoodCard';
 
 const GuestNeighborhoods = ({neighborhoods}) => {
   return (

@@ -1,0 +1,115 @@
+/* Враппер: делает хедер "плавающим" сверху страницы */
+.guest-header-wrapper {
+  position: sticky;
+  top: 20px;
+  /* Отступ от самого верха браузера */
+  z-index: 1000;
+  /* Чтобы хедер всегда был поверх других элементов */
+  display: flex;
+  justify-content: center;
+  /* Центрируем саму "пилюлю" по горизонтали */
+  padding: 0 20px;
+  margin-bottom: 40px;
+}
+
+/* Сама "Пилюля" */
+.guest-header {
+  display: flex;
+  /* Включаем Flexbox */
+  align-items: center;
+  /* Выравниваем всё по вертикали по центру */
+  background-color: #FAFAFA;
+  /* Цвет "слоновой кости" */
+  padding: 12px 24px;
+  border-radius: 50px;
+  /* Делает углы полностью круглыми */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  /* Красивая мягкая тень */
+  width: 100%;
+  max-width: 1000px;
+  /* Не даем хедеру растянуться на весь широкий экран */
+}
+
+/* Вертикальные полосочки */
+.header-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #E0E0E0;
+  margin: 0 20px;
+}
+
+/* Логотип */
+.header-logo a {
+  text-decoration: none;
+  color: #113336;
+  /* Темно-зеленый цвет как на референсе */
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo h2 {
+  margin: 0;
+}
+
+/* Центральная навигация */
+.header-nav {
+  display: flex;
+  gap: 24px;
+  /* Расстояние между ссылками */
+  flex: 1;
+  /* Этот трюк заставляет центральную часть занять всё свободное место, расталкивая Логотип и Кнопки по краям! */
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #555555;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  /* Плавная смена цвета */
+}
+
+.header-nav a:hover {
+  color: #113336;
+}
+
+/* Правая часть с кнопками */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Кнопка Sign In (прозрачная с рамкой) */
+.btn-signin {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-signin:hover {
+  background-color: #F0F0F0;
+}
+
+/* Кнопка Start Planning (залитая темно-зеленая) */
+.btn-start {
+  text-decoration: none;
+  color: white;
+  background-color: #113336;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-start:hover {
+  background-color: #0c2426;
+}

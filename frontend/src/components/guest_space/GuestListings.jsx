@@ -1,4 +1,4 @@
-import ListingCard from '../components/ListingCard'
+import ListingCard from '../listings/ListingCard'
 
 const GuestListings = ({listings}) => {
   return (
