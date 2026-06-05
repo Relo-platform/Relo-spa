@@ -18,15 +18,15 @@ const GuestHeader = () => {
           <Link to="/">Compare Cities</Link>
           <Link to="/">Neighborhoods</Link>
           <Link to="/guest/listings">Apartments</Link>
-          <Link to="/">Move Planner</Link>
+          <Link to="/planner">Move Planner</Link>
           <Link to="/">Resources</Link>
         </nav>
 
         <div className="header-divider"></div>
 
         <div className="header-actions">
-          <Link to="/" className="btn-signin">Sign in</Link>
-          <Link to="/" className="btn-start">Start Planning →</Link>
+          <Link to="/register" className="btn-signin">Sign in</Link>
+          <Link to="/login" className="btn-start">Start Planning</Link>
         </div>
 
       </div>

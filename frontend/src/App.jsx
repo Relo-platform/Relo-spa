@@ -1,15 +1,26 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+
 import LandingPage from './pages/landing/LandingPage';
 import GuestListingsPage from './pages/listings/GuestListingsPage';
+import PlannerPage from './pages/planner/PlannerPage';
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/guest/listings" element={<GuestListingsPage /> } />
 
+      <Route element={<ProtectedRoute />}>
+        <Route path="/planner" element={<PlannerPage/>} />
+      </Route>
+
       <Route path="*" element={
-        <div style={{padding: '50px', textAlign: 'center', color: 'red'}}><h2>404 - This page does not exists</h2></div>
+          <div style={{padding: '50px', textAlign: 'center', color: 'red'}}><h2>404 - This page does not exists</h2></div>
       } />
     </Routes>
   );
