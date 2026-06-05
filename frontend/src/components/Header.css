@@ -1,92 +1,100 @@
-/* Враппер: делает хедер "плавающим" сверху страницы */
 .guest-header-wrapper {
-  position: sticky;
+  position: fixed;
   top: 20px;
-  /* Отступ от самого верха браузера */
+  width: 100%;
+  box-sizing: border-box;
   z-index: 1000;
-  /* Чтобы хедер всегда был поверх других элементов */
   display: flex;
   justify-content: center;
-  /* Центрируем саму "пилюлю" по горизонтали */
   padding: 0 20px;
-  margin-bottom: 40px;
 }
 
-/* Сама "Пилюля" */
 .guest-header {
   display: flex;
-  /* Включаем Flexbox */
   align-items: center;
-  /* Выравниваем всё по вертикали по центру */
-  background-color: #FAFAFA;
-  /* Цвет "слоновой кости" */
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 12px 24px;
   border-radius: 50px;
-  /* Делает углы полностью круглыми */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  /* Красивая мягкая тень */
   width: 100%;
   max-width: 1000px;
-  /* Не даем хедеру растянуться на весь широкий экран */
 }
 
-/* Вертикальные полосочки */
 .header-divider {
   width: 1px;
-  height: 24px;
+  height: 35px;
   background-color: #E0E0E0;
   margin: 0 20px;
 }
 
-/* Логотип */
 .header-logo a {
-  text-decoration: none;
-  color: #113336;
-  /* Темно-зеленый цвет как на референсе */
-  font-size: 24px;
-  font-weight: 700;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
-.header-logo h2 {
-  margin: 0;
+.logo-img {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
 }
 
-/* Центральная навигация */
+.header-logo a:hover .logo-img {
+  transform: scale(1.08);
+}
+
 .header-nav {
   display: flex;
-  gap: 24px;
-  /* Расстояние между ссылками */
+  justify-content: center;
+  gap: 35px;
   flex: 1;
-  /* Этот трюк заставляет центральную часть занять всё свободное место, расталкивая Логотип и Кнопки по краям! */
 }
 
 .header-nav a {
+  font-family: 'Outfit', sans-serif;
+  position: relative;
   text-decoration: none;
   color: #555555;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
-  transition: color 0.2s ease;
-  /* Плавная смена цвета */
+  transition: color 0.3s ease;
+  padding-bottom: 4px;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #0A2540;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .header-nav a:hover {
-  color: #113336;
+  color: #0A2540;
 }
 
-/* Правая часть с кнопками */
+.header-nav a:hover::after {
+  width: 100%;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* Кнопка Sign In (прозрачная с рамкой) */
 .btn-signin {
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   padding: 10px 20px;
   border: 1px solid #E0E0E0;
@@ -98,12 +106,11 @@
   background-color: #F0F0F0;
 }
 
-/* Кнопка Start Planning (залитая темно-зеленая) */
 .btn-start {
   text-decoration: none;
   color: white;
-  background-color: #113336;
-  font-size: 14px;
+  background-color: #2F6A4F;
+  font-size: 16px;
   font-weight: 500;
   padding: 10px 20px;
   border-radius: 8px;

@@ -31,9 +31,9 @@ function LandingPage() {
       <Header/>
       <Hero/>
       <div className="features-section">
-        <FeatureCard title="Compare Locations" description="Evaluate cities and neighborhoods."/>
-        <FeatureCard title="Find the Perfect Place" description="Search & track apartments."/>
-        <FeatureCard title="Manage Your Move" description="Organize your relocation steps."/>
+        <FeatureCard title="Compare Locations" description="Evaluate cities and neighborhoods"/>
+        <FeatureCard title="Find the Perfect Place" description="Search & track apartments"/>
+        <FeatureCard title="Manage Your Move" description="Organize your relocation steps"/>
       </div>
       <div className="loader-wrapper">
         {isLoading ? (

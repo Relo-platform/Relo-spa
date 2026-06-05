@@ -24,9 +24,11 @@ function RegisterPage() {
       const response = await apiFetch('/users', {
         method: 'POST',
         body: JSON.stringify({
-          email_address: email,
-          password: password,
-          password_confirmation: passwordConfirmation
+          user: {
+            email_address: email,
+            password: password,
+            password_confirmation: passwordConfirmation
+          }
         })
       });
 
@@ -50,6 +52,8 @@ function RegisterPage() {
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         <input
           type="email"
+          name="email"
+          autoComplete="username"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -57,6 +61,8 @@ function RegisterPage() {
         />
         <input
           type="password"
+          name="password"
+          autoComplete="new-password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -64,6 +70,8 @@ function RegisterPage() {
         />
         <input
           type="password"
+          name="password_confirmation"
+          autoComplete="new-password"
           placeholder="Password confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}

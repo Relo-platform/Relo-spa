@@ -1,5 +1,28 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './Header.css';
+import logo from '../assets/relo-full-logo.png';
+
+const ProfileSwitcher = () => {
+  const { user } = useAuth();
+
+  if (user) {
+    return (
+      <div className="header-actions">
+        <Link to="/profile" className="btn-signin">Profile</Link>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return (
+      <div className="header-actions">
+        <Link to="/register" className="btn-signin">Sign in</Link>
+        <Link to="/login" className="btn-start">Sing up</Link>
+      </div>
+    )
+  }
+}
 
 const GuestHeader = () => {
   return (
@@ -7,8 +30,8 @@ const GuestHeader = () => {
       <div className="guest-header">
 
         <div className="header-logo">
-          <Link to="/">
-            <h2>Relo</h2>
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src={logo} alt="Relo" className="logo-img" />
           </Link>
         </div>
 
@@ -24,11 +47,7 @@ const GuestHeader = () => {
 
         <div className="header-divider"></div>
 
-        <div className="header-actions">
-          <Link to="/register" className="btn-signin">Sign in</Link>
-          <Link to="/login" className="btn-start">Start Planning</Link>
-        </div>
-
+        <ProfileSwitcher/>
       </div>
     </header>
   );

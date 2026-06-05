@@ -21,10 +21,10 @@ export const AuthProvider = ({ children }) => {
 
     const data = await response.json();
 
-    if (data.errors) {
+    if (data.errors || data.status === 'error') {
       setApiError(true);
     } else {
-      setUser(data.user);
+      setUser(data.extra.user);
       navigate("/");
     }
   };
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
         if (!response.ok) throw new Error('Not logged in');
 
         const data = await response.json();
-        setUser(data);
+        setUser(data.extra.user);
       } catch (error) {
         setApiError(true);
         setUser(null);
