@@ -7,6 +7,7 @@ import PlannerPage from './pages/planner/PlannerPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import DashboardPage from './pages/dashboard/DashboardPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<ProfilePage/>} />
         <Route path="/planner" element={<PlannerPage/>} />
+        <Route path="dashboard" element={<DashboardPage/>} />
       </Route>
 
       <Route path="*" element={

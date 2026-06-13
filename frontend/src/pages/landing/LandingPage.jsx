@@ -7,6 +7,10 @@ import Header from '../../components/Header';
 import GuestNeighborhoods from '../../components/guest_space/GuestNeighborhoods';
 import LoadingError from '../../components/errors/ApiLoadingError';
 
+import mapImg from '../../assets/landing_map.png';
+import marksImg from '../../assets/landing_marks.png';
+import houseImg from '../../assets/landing_house.png';
+
 function LandingPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,20 +34,50 @@ function LandingPage() {
     <>
       <Header/>
       <Hero/>
-      <div className="features-section">
-        <FeatureCard title="Compare Locations" description="Evaluate cities and neighborhoods"/>
-        <FeatureCard title="Find the Perfect Place" description="Search & track apartments"/>
-        <FeatureCard title="Manage Your Move" description="Organize your relocation steps"/>
-      </div>
-      <div className="loader-wrapper">
-        {isLoading ? (
-          <Loader/>
-          ) : error ? (
-          <LoadingError/>
-          ) : (
-          <GuestNeighborhoods neighborhoods = {neighborhoods}/>
-        )};
-      </div>
+
+      <section className="features-section">
+        <div className="container features-flex">
+          <FeatureCard
+            imgSrc={mapImg}
+            title="Compare Locations"
+            description="Evaluate cities and neighborhoods"
+          />
+
+          <div className="vertical-divider"></div>
+
+          <FeatureCard
+            imgSrc={houseImg}
+            title="Find the Perfect Place"
+            description="Search & track apartments"
+          />
+
+          <div className="vertical-divider"></div>
+
+          <FeatureCard
+            imgSrc={marksImg}
+            title="Manage Your Move"
+            description="Organize your relocation steps"
+          />
+        </div>
+      </section>
+
+      <section className="explore-section">
+        <div className="container">
+          {isLoading ? (
+            <Loader/>
+            ) : error ? (
+            <LoadingError/>
+            ) : (
+            <GuestNeighborhoods neighborhoods = {neighborhoods}/>
+          )}
+        </div>
+      </section>
+
+      <section className="сompare-apartments-section">
+        <div className="container">
+          todo
+        </div>
+      </section>
     </>
   )
 }

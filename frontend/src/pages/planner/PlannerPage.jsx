@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiFetch } from '../../utils/apiFetch';
-import ApiReturnedError from '../../components/errors/ApiReturnedError';
 
 function PlannerPage() {
   const navigate = useNavigate();
-  const [apiError, setApiError] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [title, setTitle] = useState("");
   const [moveDate, setMoveDate] = useState("");
   const [buyBudget, setBudget] = useState("");
@@ -62,7 +61,7 @@ function PlannerPage() {
     const data = await response.json();
 
     if (data.errors) {
-      setApiError(true);
+      setFieldErrors(data.errors.validation_error);
     } else {
       navigate("/plans/" + data.id);
     }
@@ -70,7 +69,6 @@ function PlannerPage() {
 
   return (
     <>
-      {apiError && <ApiReturnedError />}
       <h1>Start your relocation</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -93,6 +91,11 @@ function PlannerPage() {
           onChange={(e) => setBudget(e.target.value)}
           placeholder="How much would you take with you for purchase purpose?"
         />
+        {fieldErrors.buy_budget && (
+          <div style={{ color: 'red', fontSize: '12px' }}>
+            {fieldErrors.buy_budget.join(', ')}
+          </div>
+        )}
         <input
           name="rentBudget"
           type="number"

@@ -1,10 +1,18 @@
 .features-section {
+  justify-content: center;
+  padding: 40px 0px;
+  text-align: center;
+  background-color: var(--color-yellow-section-accent);
+}
+
+.features-flex {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 60px 20px;
-  background-color: #F9F8F6;
-  text-align: center;
+  gap: 120px;
+}
+
+.explore-flex {
+  display: flex;
 }
 
 .feature-card {
@@ -12,7 +20,38 @@
 }
 
 .feature-card h3 {
-  color: #4C7A5D;
+  color: #0A2540;
+}
+
+.feature-card__title {
+  font-size: 24px;
+}
+
+.feature-card__description {
+  font-weight: 400;
+}
+
+.feature-image {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+}
+
+.vertical-divider {
+  width: 2px;
+  background-color: var(--color-divider);
+  margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vertical-divider {
+    display: none;
+  }
 }
 
 .hero-section {
@@ -33,7 +72,7 @@
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, #F9F8F6 0%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, var(--color-yellow-section-accent) 0%, rgba(255,255,255,0) 100%);
   z-index: -1;
 }
 
@@ -42,7 +81,7 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 50px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #F9F8F6 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--color-yellow-section-accent) 100%);
   z-index: -1;
 }
 

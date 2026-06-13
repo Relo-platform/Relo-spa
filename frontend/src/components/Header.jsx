@@ -39,7 +39,7 @@ const GuestHeader = () => {
 
         <nav className="header-nav">
           <Link to="/">Compare Cities</Link>
-          <Link to="/">Neighborhoods</Link>
+          <Link to="/dashboard">Dashboard</Link>
           <Link to="/guest/listings">Apartments</Link>
           <Link to="/planner">Move Planner</Link>
           <Link to="/">Resources</Link>

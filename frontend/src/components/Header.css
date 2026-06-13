@@ -12,10 +12,10 @@
 .guest-header {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: #ffffffbf;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid #ffffff80;
   padding: 12px 24px;
   border-radius: 50px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -50,7 +50,7 @@
 .header-nav {
   display: flex;
   justify-content: center;
-  gap: 35px;
+  gap: 32px;
   flex: 1;
 }
 

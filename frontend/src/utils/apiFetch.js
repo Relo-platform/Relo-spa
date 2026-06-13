@@ -21,5 +21,17 @@ export const apiFetch = async (endpoint, options = {}) => {
     },
   };
 
-  return fetch(url, fetchOptions);
+  const response = await fetch(url, fetchOptions);
+
+    if (response.status === 401) {
+      window.location.href = '/';
+    }
+
+    if (response.status >= 500) {
+      alert("Internal server error.");
+
+      throw new Error(`Server crashed with status: ${response.status}`);
+    }
+
+  return response
 };
