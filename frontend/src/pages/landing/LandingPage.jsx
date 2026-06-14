@@ -10,24 +10,31 @@ import LoadingError from '../../components/errors/ApiLoadingError';
 import mapImg from '../../assets/landing_map.png';
 import marksImg from '../../assets/landing_marks.png';
 import houseImg from '../../assets/landing_house.png';
+import GuestListings from '../../components/guest_space/GuestListings';
+import GuestTimeline from '../../components/guest_space/GuestTimeline';
+import Footer from '../../components/Footer';
 
 function LandingPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [neighborhoods, setNeighborhoods] = useState([]);
+  const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/guest_space/landing_neighborhoods`)
-      .then(res => res.json())
-      .then(data => {
-        setNeighborhoods(data);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setIsLoading(false);
-      });
+    Promise.all([
+      fetch(`${import.meta.env.VITE_API_URL}/guest_space/landing_neighborhoods`).then(res => res.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/guest_space/landing_listings`).then(res => res.json())
+    ])
+    .then(([neighborhoodsData, listingsData]) => {
+      setNeighborhoods(neighborhoodsData);
+      setListings(listingsData);
+      setIsLoading(false);
+    })
+    .catch(err => {
+      setError(err.message);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
@@ -73,10 +80,30 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="сompare-apartments-section">
+      <section className="compare-apartments-section">
         <div className="container">
-          todo
+          {isLoading ? (
+            <Loader/>
+            ) : error ? (
+            <LoadingError/>
+            ) : (
+            <GuestListings listings = {listings}/>
+          )}
         </div>
+      </section>
+
+      <section className="timeline-section">
+        <div className="container">
+          {
+            <GuestTimeline/>
+          }
+        </div>
+      </section>
+
+      <section className="footer-section">
+        {
+          <Footer/>
+        }
       </section>
     </>
   )

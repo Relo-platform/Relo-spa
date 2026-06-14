@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
 :root {
   /* default text color */
   --color-primary: #0A2540;
@@ -28,9 +30,13 @@
 
   /* default white bg color */
   --color-default-white: #ffffff;
+
+  /* default grey sub text color */
+  --color-default-subtext: #64748B;
+
+  --color-default-red: #E76F51;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 .container {
   width: 100%;
   max-width: 1440px;

@@ -1,5 +1,6 @@
 .explore-wrapper {
-  margin-top: 6vh;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
 }
 
 .explore-title {
@@ -34,6 +35,11 @@
   display: flex;
   flex-direction: column;
   gap: 44px;
+  opacity: 0;
+}
+
+.explore-left-column.animate-slide {
+  animation: slideInFromLeft 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .neighborhoods-table {
@@ -54,6 +60,11 @@
   padding: 20px 24px;
   border-bottom: 1px solid var(--color-divider);
   vertical-align: middle;
+}
+
+.neighborhoods-table th:nth-child(n+3),
+.neighborhoods-table td:nth-child(n+3) {
+  text-align: center;
 }
 
 .neighborhoods-table tr:last-child td {
@@ -98,8 +109,21 @@
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(10, 37, 64, 0.3);
   transition: background-color 0.2s;
+  text-decoration: none;
 }
 
 .explore-map-btn:hover {
   background-color: var(--color-blue-bg-button-hover);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

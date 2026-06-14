@@ -23,10 +23,6 @@ export const apiFetch = async (endpoint, options = {}) => {
 
   const response = await fetch(url, fetchOptions);
 
-    if (response.status === 401) {
-      window.location.href = '/';
-    }
-
     if (response.status >= 500) {
       alert("Internal server error.");
 

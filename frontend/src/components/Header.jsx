@@ -17,8 +17,8 @@ const ProfileSwitcher = () => {
   if (!user) {
     return (
       <div className="header-actions">
-        <Link to="/register" className="btn-signin">Sign in</Link>
-        <Link to="/login" className="btn-start">Sing up</Link>
+        <Link to="/login" className="btn-signin">Sign in</Link>
+        <Link to="/register" className="btn-start">Sign up</Link>
       </div>
     )
   }
