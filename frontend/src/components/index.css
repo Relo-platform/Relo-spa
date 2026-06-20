@@ -4,23 +4,35 @@
   /* default text color */
   --color-primary: #0A2540;
 
+  /* default blue button bg hover color */
+  --color-blue-bg-button-hover: #1a3a5c;
+
   /* default bg color */
   --color-bg-page: #F9F8F6;
+
+  /* default white bg color */
+  --color-default-white: #ffffff;
 
   /* default grey divier color */
   --color-divider: #E0E0E0;
 
+  /* default black text color */
+  --color-default-black: #555555;
+
+  /* default light-grey color */
+  --color-light-grey: #94A3B8;
+
   /* default grey border color */
   --color-grey-border: #ffffff80;
 
+  /* default grey sub text color */
+  --color-default-subtext: #64748B;
+
   /* default green button bg color */
-  --color-green-bg-button-: #2F6A4F;
+  --color-green-bg-button: #2F6A4F;
 
   /* default green button bg hover color */
   --color-green-bg-button-hover: #1B4332;
-
-  /* default blue button bg hover color */
-  --color-blue-bg-button-hover: #1a3a5c;
 
   /* default white button text color */
   --color-white-text-button: #FFFFFF;
@@ -28,12 +40,10 @@
   /* default yellow accent bg color */
   --color-yellow-section-accent: #fbf5ee;
 
-  /* default white bg color */
-  --color-default-white: #ffffff;
+  /* default yellow subcolor */
+  --color-yellow-subcolor: #fffbf7;
 
-  /* default grey sub text color */
-  --color-default-subtext: #64748B;
-
+  /* default yellow color */
   --color-default-red: #E76F51;
 }
 
@@ -48,10 +58,20 @@ body {
   margin: 0;
   font-family: 'Outfit', sans-serif;
   background-color: #F9F8F6;
-  color: #0A2540;
+  color: var(--color-primary);
   -webkit-font-smoothing: antialiased;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
 }
