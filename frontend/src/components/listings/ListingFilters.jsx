@@ -1,24 +1,37 @@
-const ListingFilters = ({ searchQuery, setSearchQuery, statusFilter, setStatusFilter, uniqueStatuses }) => {
+import './ListingFilters.css';
+
+const ListingFilters = ({ search, status, sort }) => {
   return (
-    <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', justifyContent: 'center' }}>
+    <div className="filters-container">
 
       <input
         type="text"
         placeholder="Search apartments..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        style={{ padding: '8px', width: '250px', borderRadius: '4px' }}
+        value={search.value}
+        onChange={(e) => search.onChange(e.target.value)}
+        className="filter-input"
       />
 
       <select
-        value={statusFilter}
-        onChange={(e) => setStatusFilter(e.target.value)}
-        style={{ padding: '8px', borderRadius: '4px' }}
+        value={status.value}
+        onChange={(e) => status.onChange(e.target.value)}
+        className="filter-select"
       >
         <option value="All">All Statuses</option>
-        {uniqueStatuses.map(status => (
-          <option key={status} value={status}>{status}</option>
+        {status.options.map(option => (
+          <option key={option} value={option}>{option}</option>
         ))}
+      </select>
+
+      <select
+        value={sort}
+        onChange={(e) => sort.onChange(e.target.value)}
+        className="filter-select"
+      >
+        <option value="">No sorting</option>
+        <option value="price_desc">Price: high to low</option>
+        <option value="price_asc">Price: low to high</option>
+        <option value="bedrooms">Bedrooms</option>
       </select>
 
     </div>
