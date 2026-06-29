@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import { apiFetch } from '../../utils/apiFetch';
 import Loader from '../../components/Loader';
 import LoadingError from '../../components/errors/ApiLoadingError';
 import Header from '../../components/Header';
 
 import GuestListings from '../../components/guest_space/GuestListings';
 import ListingFilters from '../../components/listings/ListingFilters';
-import SORT_FUNCTIONS from '../../utils/sortFunctions';
 
 function GuestListingsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,13 +13,12 @@ function GuestListingsPage() {
   const [listings, setListings] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
-  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
-    apiFetch(`/listings?page=1`)
+    fetch(`${import.meta.env.VITE_API_URL}/guest_space/listings`)
       .then(res => res.json())
       .then(data => {
-        setListings(data?.extra?.listings || []);
+        setListings(data);
         setIsLoading(false);
       })
       .catch(err => {
@@ -32,18 +29,11 @@ function GuestListingsPage() {
 
   const uniqueStatuses = [...new Set(listings.map(l => l.status))];
 
-  const search = { value: searchQuery, onChange: setSearchQuery };
-  const sort = { value: sortBy, onChange: setSortBy };
-  const status = { value: statusFilter, onChange: setStatusFilter, options: uniqueStatuses };
-
   const filteredListings = listings.filter((listing) => {
     const matchesSearch = listing.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === 'All' || listing.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
-
-  const sortFn = SORT_FUNCTIONS[sortBy];
-  const sorted = sortFn ? [...filteredListings].sort(sortFn) : filteredListings;
 
   return (
     <>
@@ -54,11 +44,17 @@ function GuestListingsPage() {
         ) : error ? (
           <LoadingError/>
         ) : (
-          <section className="filters-wrapper container">
-            <ListingFilters search={search} status={status} sort={sort} />
+          <>
+            <ListingFilters
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              statusFilter={statusFilter}
+              setStatusFilter={setStatusFilter}
+              uniqueStatuses={uniqueStatuses}
+            />
 
-            <GuestListings listings={sorted} />
-          </section>
+            <GuestListings listings={filteredListings} />
+          </>
         )}
       </div>
     </>
