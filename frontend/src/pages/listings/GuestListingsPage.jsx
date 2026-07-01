@@ -16,19 +16,35 @@ function GuestListingsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [sortBy, setSortBy] = useState("");
+  const [savedListingIds, setSavedListingIds] = useState(new Set());
 
   useEffect(() => {
-    apiFetch(`/listings?page=1`)
-      .then(res => res.json())
-      .then(data => {
-        setListings(data?.extra?.listings || []);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setIsLoading(false);
-      });
+    Promise.all([
+      apiFetch('/listings?page=1').then(res => res.json()),
+      apiFetch('/saved_listings').then(res => res.json())
+    ])
+    .then(([listingsData, savedData]) => {
+      setListings(listingsData?.extra?.listings || []);
+      setSavedListingIds(new Set(savedData?.extra?.listings?.map(s => s.id)));
+      setIsLoading(false);
+    })
+    .catch(err => {
+      setError(err.message);
+      setIsLoading(false);
+    });
   }, []);
+
+  const addToSaved = (id) => {
+    setSavedListingIds(prev => new Set([...prev, id]));
+  };
+
+  const removeFromSaved = (id) => {
+    setSavedListingIds(prev => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+  };
 
   const uniqueStatuses = [...new Set(listings.map(l => l.status))];
 
@@ -57,7 +73,12 @@ function GuestListingsPage() {
           <section className="filters-wrapper container">
             <ListingFilters search={search} status={status} sort={sort} />
 
-            <GuestListings listings={sorted} />
+            <GuestListings
+              listings={sorted}
+              savedListingIds={savedListingIds}
+              addToSaved={addToSaved}
+              removeFromSaved={removeFromSaved}
+            />
           </section>
         )}
       </div>
